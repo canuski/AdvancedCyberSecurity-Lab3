@@ -175,10 +175,10 @@ We hebben dit gedaan in stap 8. Dit voert de HTTP-01 challenge uit.
 
 De belangrijkste maatregelen die we nemen, zijn:
 
-1. Encryptie van de private key: de private key van de CA wordt altijd geëncrypteerd opgeslagen. Dit zorgt ervoor dat zelfs als een aanvaller fysieke toegang krijgt tot de bestandssystemen de sleutel zelf niet bruikbaar is zonder decryptie.
-2. Beperkte toegang: alleen geautoriseerde gebruikers hebben toegang tot de private key. Toegangsrechten worden strikt beperkt en zorgvuldig gecontroleerd.
-3. Fysieke isolatie: voor extra veiligheid wordt de private key opgeslagen op een aparte geïsoleerde machine.
-4. TPM chip: zorgt voor volledige hardware encryptie. De TPM chip geeft een extra beveiliging door cryptografische sleutels veilig te genereren en op te slaan waardoor gevoelige data zoals de private key nog beter beschermd is tegen ongewenst toegang.
+1. **Encryptie van de private key**: de private key van de CA wordt altijd geëncrypteerd opgeslagen. Dit zorgt ervoor dat zelfs als een aanvaller fysieke toegang krijgt tot de bestandssystemen de sleutel zelf niet bruikbaar is zonder decryptie.
+2. **Beperkte toegang**: alleen geautoriseerde gebruikers hebben toegang tot de private key. Toegangsrechten worden strikt beperkt en zorgvuldig gecontroleerd.
+3. **Fysieke isolatie**: voor extra veiligheid wordt de private key opgeslagen op een aparte geïsoleerde machine.
+4. **TPM chip**: zorgt voor volledige hardware encryptie. De TPM chip geeft een extra beveiliging door cryptografische sleutels veilig te genereren en op te slaan waardoor gevoelige data zoals de private key nog beter beschermd is tegen ongewenst toegang.
 
 ## Nginx Server opzetten
 
