@@ -11,6 +11,7 @@
 ## Threat Model
 
 ![Threat model](image-2.png)
+Wij hebben ons gebaseerd op de oefening en niet zoals het in de real life omgeving zou zijn.
 
 ## Step-ca opzetten
 
