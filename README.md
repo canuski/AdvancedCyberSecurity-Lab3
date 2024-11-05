@@ -19,28 +19,30 @@ Hieronder korte stappen en uitleg van hoe we de step-ca hebben opgezet.
 ##### Stap 1
 
 Installeer eerst step CLI en step-ca (ubuntu/debian), voer onderstaande commandos uit:
-`wget https://dl.smallstep.com/cli/docs-cli-install/latest/step-cli_amd64.deb`
-`sudo dpkg -i step-cli_amd64.deb`
-`wget https://dl.smallstep.com/certificates/docs-ca-install/latest/step-ca_amd64.deb`
-`sudo dpkg -i step-ca_amd64.deb`
-
+```
+$ wget https://dl.smallstep.com/cli/docs-cli-install/latest/step-cli_amd64.deb`
+$ sudo dpkg -i step-cli_amd64.deb`
+$ wget https://dl.smallstep.com/certificates/docs-ca-install/latest/step-ca_amd64.deb`
+$ sudo dpkg -i step-ca_amd64.deb`
+```
 ##### Stap 2
 
 Na de installatie van de Step CLI kunnen we de certificaatinstantie initialiseren:
-`step ca init`
-`✔ Deployment Type: Standalone`
-`What would you like to name your new PKI?`
-`✔ (e.g. Smallstep): nginxhttps`
-`What DNS names or IP addresses will clients use to reach your CA?`
-`✔ (e.g. ca.example.com[,10.1.2.3,etc.]): 127.0.0.1`
-`What IP and port will your new CA bind to? (:443 will bind to 0.0.0.0:443)`
-`✔ (e.g. :443 or 127.0.0.1:443): 127.0.0.1:8443`
-`What would you like to name the CA's first provisioner?`
-`✔ (e.g. you@smallstep.com): cyberadvlauosclor@cyber.be`
-
+```
+step ca init
+✔ Deployment Type: Standalone
+What would you like to name your new PKI?
+✔ (e.g. Smallstep): nginxhttps
+What DNS names or IP addresses will clients use to reach your CA?
+✔ (e.g. ca.example.com[,10.1.2.3,etc.]): 127.0.0.1
+What IP and port will your new CA bind to? (:443 will bind to 0.0.0.0:443)
+✔ (e.g. :443 or 127.0.0.1:443): 127.0.0.1:8443
+What would you like to name the CA's first provisioner?
+✔ (e.g. you@smallstep.com): cyberadvlauosclor@cyber.be
+```
 ##### Stap 3
 
-In deze stap passen we de CA-configuratie aan, zodat uitsluitend certificaten voor .be- en .local-domeinen worden uitgegeven.
+In deze stap passen we de CA-configuratie aan, zodat uitsluitend certificaten voor .be- en .local-domeinen worden uitgegeven. We voegen volgende stuk code aan onze authority block.
 
 ```{
   "authority": {
@@ -70,7 +72,7 @@ Start de CA-server en Nginx door de volgende commando's uit te voeren:
 
 We configureren Nginx om op poort 80 te luisteren. Certbot vereist toegang via deze poort om een certificaat aan te vragen. Daarna moet Nginx opgestart worden.
 
-Pas het configuratiebestand van Nginx aan met het volgende:
+Pas het configuratiebestand van Nginx aan met het volgende (let op server_name):
 
 ```
 server {
@@ -108,7 +110,7 @@ Herstart Nginx zodat de ACME-challenge kan worden voltooid:
 
 Nu Nginx correct is ingesteld, kun je het configureren voor SSL-verkeer. We passen de configuratie aan om SSL op poort 443 te ondersteunen en geven het pad naar het certificaat op.
 
-Gebruik de volgende configuratie in het Nginx-configuratiebestand:
+Gebruik de volgende configuratie in het Nginx-configuratiebestand (let op server_name en ssl_cert* paths):
 
 ```
 server {
@@ -182,7 +184,7 @@ De belangrijkste maatregelen die we nemen, zijn:
 
 ## Nginx Server opzetten
 
-- apt-install nginx
+- sudo apt install nginx
 - Configuratie aanpassen zoals in de bovenstaande stappen staat beschreven.
 
 ## Screenshots vanuit de browser
